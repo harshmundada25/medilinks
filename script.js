@@ -1,9 +1,22 @@
 const EARLY_ACCESS_BASE_COUNT=400;
+const EARLY_ACCESS_STORAGE_KEY='medilinks-early-access-count';
+
+function getStoredEarlyAccessCount(){
+  const storedValue=window.localStorage.getItem(EARLY_ACCESS_STORAGE_KEY);
+  const parsedValue=storedValue?parseInt(storedValue,10):NaN;
+
+  if(Number.isNaN(parsedValue) || parsedValue<EARLY_ACCESS_BASE_COUNT){
+    return EARLY_ACCESS_BASE_COUNT;
+  }
+
+  return parsedValue;
+}
 
 function updateEarlyAccessCounter(count){
   const countNum=document.getElementById('countNum');
   const barFill=document.getElementById('barFill');
 
+  window.localStorage.setItem(EARLY_ACCESS_STORAGE_KEY,String(count));
   countNum.textContent=count;
   barFill.style.width=(count/10)+'%';
 }
@@ -11,7 +24,7 @@ function updateEarlyAccessCounter(count){
 // animate bar
 window.addEventListener('load',()=>{
   setTimeout(()=>{
-    updateEarlyAccessCounter(EARLY_ACCESS_BASE_COUNT);
+    updateEarlyAccessCounter(getStoredEarlyAccessCount());
   },800);
 });
 
