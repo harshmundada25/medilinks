@@ -453,8 +453,14 @@ footer a{color:var(--blue);text-decoration:none}
   .nav-cta{padding:7px 12px;font-size:11px}
   .hero{padding:96px 16px 44px}
   .headline{font-size:clamp(34px,9vw,52px)}
-  .hero-sub{line-height:1.6}
-  .form-card{padding:24px 18px}
+  .hero-sub{line-height:1.6;margin-bottom:24px}
+  .feat-pills{margin-bottom:28px}
+  .form-outer{max-width:100%}
+  .form-card{
+    padding:24px 18px;
+    border-radius:18px;
+    box-shadow:0 10px 28px rgba(26,156,216,0.14),0 3px 10px rgba(12,26,39,0.08);
+  }
   .form-status-top{align-items:center}
   .fi-title{font-size:18px}
   .fi-sub{font-size:14px}
@@ -462,6 +468,21 @@ footer a{color:var(--blue);text-decoration:none}
   .form-progress-badge{min-width:90px;padding:8px 10px}
   .fpb-value{font-size:32px}
   .fpb-label{font-size:10px}
+  .fl{font-size:10px}
+  input,select,textarea{
+    font-size:16px;
+    border-radius:12px;
+    padding:13px 14px;
+  }
+  textarea{min-height:92px}
+  .invest-row{padding:14px;border-radius:14px}
+  .submit-btn{
+    min-height:52px;
+    border-radius:14px;
+    font-size:15px;
+    letter-spacing:0;
+  }
+  .form-foot{line-height:1.4;padding:0 6px}
   .feat-grid{grid-template-columns:1fr 1fr}
   .stats-card{grid-template-columns:1fr 1fr}
   .sc{border-bottom:1px solid var(--border-light)}
@@ -471,18 +492,38 @@ footer a{color:var(--blue);text-decoration:none}
 }
 
 @media(max-width:560px){
+  .hero{padding:88px 12px 36px}
+  .access-pill{margin-bottom:20px}
+  .headline{font-size:clamp(30px,10vw,42px);margin-bottom:14px}
+  .hero-sub{font-size:14px;margin-bottom:20px}
+  .scarcity{padding:12px 14px;margin-bottom:24px}
+  .form-card{padding:18px 14px;border-radius:16px}
+  .form-intro{margin-bottom:18px;padding-bottom:12px}
+  .form-status-top{flex-direction:column;align-items:flex-start;gap:10px}
+  .form-progress-badge{align-self:flex-end;min-width:84px;padding:7px 9px}
+  .fpb-value{font-size:28px}
+  .form-progress-track{height:8px}
+  .fgrid{gap:12px}
   .fgrid{grid-template-columns:1fr}
   .field.full,.invest-row,.submit-btn{grid-column:1}
 }
 
 @media (max-width:420px){
   .nav-cta{display:none}
+  nav{height:54px;padding:0 12px}
+  .nl-wordmark{font-size:16px}
   .access-pill{padding:6px 12px 6px 6px}
   .ap-badge{font-size:9px;padding:4px 9px}
   .ap-text{font-size:11.5px}
-  .headline{font-size:clamp(30px,10.5vw,40px)}
-  .scarcity{padding:12px 14px}
+  .headline{font-size:clamp(28px,11vw,36px)}
+  .scarcity{padding:11px 12px}
+  .sc-big{font-size:24px}
+  .sc-small{font-size:10px}
+  .fi-title{font-size:17px}
+  .fi-sub{font-size:12px}
+  .fi-note{font-size:11px}
   .form-foot{font-size:10.5px;line-height:1.4;padding:0 4px}
+  .submit-btn{min-height:50px}
   .feat-grid{grid-template-columns:1fr}
 }
 

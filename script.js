@@ -31,7 +31,7 @@ window.addEventListener('load',()=>{
 
 // form progress + investor checkbox behavior
 (function(){
-  const requiredIds=['f-name','f-phone','f-email','f-degree','f-spec','f-thoughts','f-challenges'];
+  const requiredIds=['f-name','f-phone','f-email','f-degree','f-spec','f-role','f-thoughts','f-challenges'];
   const progressValue=document.getElementById('formProgressValue');
   const progressFill=document.getElementById('formProgressFill');
   const investRow=document.getElementById('investRow');
@@ -84,6 +84,7 @@ function handleSubmit(){
     phone:document.getElementById('f-phone').value.trim(),
     degree:document.getElementById('f-degree').value,
     spec:document.getElementById('f-spec').value.trim(),
+    role:document.getElementById('f-role').value,
     thoughts:document.getElementById('f-thoughts').value.trim(),
     challenges:document.getElementById('f-challenges').value.trim(),
     invest:document.getElementById('f-invest').checked
@@ -92,7 +93,7 @@ function handleSubmit(){
   if(btn.disabled){
     return;
   }
-  if(!v.name||!v.email||!v.phone||!v.degree||!v.spec||!v.thoughts||!v.challenges||!v.invest){
+  if(!v.name||!v.email||!v.phone||!v.degree||!v.spec||!v.role||!v.thoughts||!v.challenges||!v.invest){
     const orig=btn.textContent;
     btn.style.background='linear-gradient(135deg,#d63031,#b02020)';
     btn.style.boxShadow='0 4px 14px rgba(214,48,49,0.3)';
