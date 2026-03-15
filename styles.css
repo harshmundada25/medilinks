@@ -167,7 +167,7 @@ nav{
 }
 .form-status-top{
   display:flex;
-  align-items:flex-start;
+  align-items:center;
   justify-content:space-between;
   gap:14px;
   margin-bottom:10px;
@@ -188,27 +188,29 @@ nav{
   margin-bottom:12px;
 }
 .form-progress-badge{
-  min-width:92px;
-  background:#dce8f6;
-  border:1px solid #aac7e8;
-  border-radius:14px;
-  padding:10px 12px;
+  min-width:96px;
+  background:linear-gradient(180deg,#eef5ff 0%,#dceafb 100%);
+  border:1px solid #abc8ea;
+  border-radius:16px;
+  padding:10px 10px 9px;
   text-align:center;
   flex-shrink:0;
+  box-shadow:0 6px 16px rgba(36,94,168,0.12), inset 0 1px 0 rgba(255,255,255,0.65);
 }
 .fpb-value{
-  font-size:38px;
-  font-weight:700;
-  color:#2155a2;
+  font-size:44px;
+  font-weight:800;
+  color:#1f4f99;
   line-height:1;
-  margin-bottom:3px;
+  letter-spacing:-0.03em;
+  margin-bottom:2px;
 }
 .fpb-label{
-  font-size:10px;
+  font-size:12px;
   font-weight:700;
-  letter-spacing:0.08em;
+  letter-spacing:0.12em;
   text-transform:uppercase;
-  color:#4f6483;
+  color:#4e6381;
 }
 .form-progress-track{
   width:100%;
@@ -461,12 +463,12 @@ footer a{color:var(--blue);text-decoration:none}
     border-radius:18px;
     box-shadow:0 10px 28px rgba(26,156,216,0.14),0 3px 10px rgba(12,26,39,0.08);
   }
-  .form-status-top{align-items:center}
+  .form-status-top{align-items:flex-start}
   .fi-title{font-size:18px}
-  .fi-sub{font-size:14px}
+  .fi-sub{font-size:13px}
   .fi-note{font-size:12px}
-  .form-progress-badge{min-width:90px;padding:8px 10px}
-  .fpb-value{font-size:32px}
+  .form-progress-badge{min-width:88px;padding:8px 9px}
+  .fpb-value{font-size:36px}
   .fpb-label{font-size:10px}
   .fl{font-size:10px}
   input,select,textarea{
@@ -499,9 +501,16 @@ footer a{color:var(--blue);text-decoration:none}
   .scarcity{padding:12px 14px;margin-bottom:24px}
   .form-card{padding:18px 14px;border-radius:16px}
   .form-intro{margin-bottom:18px;padding-bottom:12px}
-  .form-status-top{flex-direction:column;align-items:flex-start;gap:10px}
-  .form-progress-badge{align-self:flex-end;min-width:84px;padding:7px 9px}
-  .fpb-value{font-size:28px}
+  .form-status-top{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:start;
+    column-gap:10px;
+    row-gap:8px;
+  }
+  .form-progress-badge{min-width:84px;padding:8px 8px}
+  .fpb-value{font-size:34px}
+  .fpb-label{font-size:9px;letter-spacing:0.1em}
   .form-progress-track{height:8px}
   .fgrid{gap:12px}
   .fgrid{grid-template-columns:1fr}
@@ -519,9 +528,12 @@ footer a{color:var(--blue);text-decoration:none}
   .scarcity{padding:11px 12px}
   .sc-big{font-size:24px}
   .sc-small{font-size:10px}
-  .fi-title{font-size:17px}
-  .fi-sub{font-size:12px}
+  .fi-title{font-size:16px}
+  .fi-sub{font-size:11.5px}
   .fi-note{font-size:11px}
+  .form-progress-badge{min-width:78px;border-radius:14px;padding:7px 7px}
+  .fpb-value{font-size:30px}
+  .fpb-label{font-size:8.5px}
   .form-foot{font-size:10.5px;line-height:1.4;padding:0 4px}
   .submit-btn{min-height:50px}
   .feat-grid{grid-template-columns:1fr}
