@@ -84,16 +84,16 @@ nav{
 .ap-text{font-size:12.5px;font-weight:500;color:var(--text-2)}
 
 .headline{
-  font-family:'Fraunces',serif;
-  font-weight:300;font-style:italic;
-  font-size:clamp(42px,7vw,82px);
-  line-height:1.07;letter-spacing:-0.02em;
+  font-family:'Manrope','Plus Jakarta Sans',sans-serif;
+  font-weight:700;font-style:normal;
+  font-size:clamp(40px,7vw,78px);
+  line-height:1.1;letter-spacing:-0.02em;
   color:var(--text);
   max-width:780px;margin-bottom:22px;
   opacity:0;animation:rise 0.8s ease 0.15s forwards;
 }
-.headline .word-blue{color:var(--blue);font-style:normal;font-weight:400}
-.headline .word-green{color:var(--green);font-style:normal;font-weight:400}
+.headline .word-blue{color:var(--blue);font-style:normal;font-weight:700}
+.headline .word-green{color:var(--green);font-style:normal;font-weight:700}
 
 .hero-sub{
   font-size:clamp(15px,2vw,18px);
