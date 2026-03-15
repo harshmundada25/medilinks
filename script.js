@@ -51,8 +51,12 @@ window.addEventListener('load',()=>{
     }
     const totalFields=requiredIds.length+1;
     const percent=Math.round((filled/totalFields)*100);
-    progressValue.textContent=percent+'%';
-    progressFill.style.width=percent+'%';
+    if(progressValue){
+      progressValue.textContent=percent+'%';
+    }
+    if(progressFill){
+      progressFill.style.width=percent+'%';
+    }
     submitBtn.disabled=percent<100;
   }
 
