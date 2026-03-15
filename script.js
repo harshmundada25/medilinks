@@ -1,5 +1,6 @@
 const EARLY_ACCESS_BASE_COUNT=400;
 const EARLY_ACCESS_STORAGE_KEY='medilinks-early-access-count';
+const GOOGLE_SHEETS_WEBAPP_URL='https://script.google.com/macros/s/AKfycbxYTYuzqBuy0RsLWAUdp9Y-6tGxhgi7F7alXXDIv6oNz9uVxP-q-YRH_T156IhRIhU8/exec';
 
 function getStoredEarlyAccessCount(){
   const storedValue=window.localStorage.getItem(EARLY_ACCESS_STORAGE_KEY);
@@ -13,12 +14,36 @@ function getStoredEarlyAccessCount(){
 }
 
 function updateEarlyAccessCounter(count){
+  const safeCount=Math.max(EARLY_ACCESS_BASE_COUNT,parseInt(count,10)||EARLY_ACCESS_BASE_COUNT);
   const countNum=document.getElementById('countNum');
   const barFill=document.getElementById('barFill');
 
-  window.localStorage.setItem(EARLY_ACCESS_STORAGE_KEY,String(count));
-  countNum.textContent=count;
-  barFill.style.width=(count/10)+'%';
+  window.localStorage.setItem(EARLY_ACCESS_STORAGE_KEY,String(safeCount));
+  countNum.textContent=safeCount;
+  barFill.style.width=(safeCount/10)+'%';
+}
+
+async function fetchGlobalEarlyAccessCount(){
+  if(!GOOGLE_SHEETS_WEBAPP_URL){
+    return null;
+  }
+
+  try{
+    const response=await fetch(`${GOOGLE_SHEETS_WEBAPP_URL}?action=count`,{method:'GET'});
+    if(!response.ok){
+      return null;
+    }
+
+    const data=await response.json();
+    const parsedCount=parseInt(data.count,10);
+    if(Number.isNaN(parsedCount)){
+      return null;
+    }
+
+    return Math.max(EARLY_ACCESS_BASE_COUNT,parsedCount);
+  }catch(error){
+    return null;
+  }
 }
 
 // animate bar
@@ -26,6 +51,13 @@ window.addEventListener('load',()=>{
   setTimeout(()=>{
     updateEarlyAccessCounter(getStoredEarlyAccessCount());
   },800);
+
+  setTimeout(async()=>{
+    const globalCount=await fetchGlobalEarlyAccessCount();
+    if(globalCount!==null){
+      updateEarlyAccessCounter(globalCount);
+    }
+  },950);
 });
 
 // ticker build
@@ -90,9 +122,6 @@ window.addEventListener('load',()=>{
   syncInvestorState();
   setTimeout(updateProgress,200);
 })();
-
-// submit
-const GOOGLE_SHEETS_WEBAPP_URL='https://script.google.com/macros/s/AKfycbxYTYuzqBuy0RsLWAUdp9Y-6tGxhgi7F7alXXDIv6oNz9uVxP-q-YRH_T156IhRIhU8/exec';
 
 async function postToGoogleSheets(payload){
   if(!GOOGLE_SHEETS_WEBAPP_URL){
@@ -167,6 +196,13 @@ async function handleSubmit(){
   const num=parseInt(document.getElementById('countNum').textContent,10)+1;
   document.getElementById('memberNum').textContent=num;
   updateEarlyAccessCounter(num);
+
+  const globalCount=await fetchGlobalEarlyAccessCount();
+  if(globalCount!==null){
+    document.getElementById('memberNum').textContent=globalCount;
+    updateEarlyAccessCounter(globalCount);
+  }
+
   document.getElementById('formInner').style.display='none';
   const s=document.getElementById('successDiv');
   s.style.display='flex';
