@@ -1,7 +1,17 @@
+const EARLY_ACCESS_BASE_COUNT=400;
+
+function updateEarlyAccessCounter(count){
+  const countNum=document.getElementById('countNum');
+  const barFill=document.getElementById('barFill');
+
+  countNum.textContent=count;
+  barFill.style.width=(count/10)+'%';
+}
+
 // animate bar
 window.addEventListener('load',()=>{
   setTimeout(()=>{
-    document.getElementById('barFill').style.width='43.2%';
+    updateEarlyAccessCounter(EARLY_ACCESS_BASE_COUNT);
   },800);
 });
 
@@ -15,18 +25,6 @@ window.addEventListener('load',()=>{
     el.innerHTML=`<span class="ti-pip"></span>${s}`;
     belt.appendChild(el);
   });
-})();
-
-// live counter
-(function(){
-  let n=432;
-  setInterval(()=>{
-    if(n<999&&Math.random()<0.28){
-      n++;
-      document.getElementById('countNum').textContent=n;
-      document.getElementById('barFill').style.width=(n/10)+'%';
-    }
-  },7500);
 })();
 
 // form progress + investor checkbox behavior
@@ -81,7 +79,29 @@ window.addEventListener('load',()=>{
 })();
 
 // submit
-function handleSubmit(){
+const GOOGLE_SHEETS_WEBAPP_URL='https://script.google.com/macros/s/AKfycbxYTYuzqBuy0RsLWAUdp9Y-6tGxhgi7F7alXXDIv6oNz9uVxP-q-YRH_T156IhRIhU8/exec';
+
+async function postToGoogleSheets(payload){
+  if(!GOOGLE_SHEETS_WEBAPP_URL){
+    return {ok:false,reason:'missing-url'};
+  }
+
+  try{
+    await fetch(GOOGLE_SHEETS_WEBAPP_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{
+        'Content-Type':'text/plain;charset=utf-8'
+      },
+      body:JSON.stringify(payload)
+    });
+    return {ok:true};
+  }catch(error){
+    return {ok:false,reason:'network-error',error};
+  }
+}
+
+async function handleSubmit(){
   const v={
     name:document.getElementById('f-name').value.trim(),
     email:document.getElementById('f-email').value.trim(),
@@ -94,20 +114,46 @@ function handleSubmit(){
     invest:document.getElementById('f-invest').checked
   };
   const btn=document.querySelector('.submit-btn');
+  const originalText='Request Early Access →';
   if(btn.disabled){
     return;
   }
   if(!v.name||!v.email||!v.phone||!v.degree||!v.spec||!v.role||!v.thoughts||!v.challenges||!v.invest){
-    const orig=btn.textContent;
     btn.style.background='linear-gradient(135deg,#d63031,#b02020)';
     btn.style.boxShadow='0 4px 14px rgba(214,48,49,0.3)';
     btn.textContent='Please fill all required fields';
-    setTimeout(()=>{btn.style.background='';btn.style.boxShadow='';btn.textContent=orig;},2800);
+    setTimeout(()=>{btn.style.background='';btn.style.boxShadow='';btn.textContent=originalText;},2800);
     return;
   }
-  const num=parseInt(document.getElementById('countNum').textContent)+1;
+
+  btn.disabled=true;
+  btn.textContent='Submitting...';
+
+  const payload={
+    timestamp:new Date().toISOString(),
+    source:'medilinks-early-access-form',
+    ...v
+  };
+
+  const result=await postToGoogleSheets(payload);
+  if(!result.ok){
+    btn.disabled=false;
+    btn.style.background='linear-gradient(135deg,#d63031,#b02020)';
+    btn.style.boxShadow='0 4px 14px rgba(214,48,49,0.3)';
+    btn.textContent=result.reason==='missing-url'
+      ? 'Google Sheets URL not configured'
+      : 'Submission failed. Try again';
+    setTimeout(()=>{
+      btn.style.background='';
+      btn.style.boxShadow='';
+      btn.textContent=originalText;
+    },3000);
+    return;
+  }
+
+  const num=parseInt(document.getElementById('countNum').textContent,10)+1;
   document.getElementById('memberNum').textContent=num;
-  document.getElementById('countNum').textContent=num;
+  updateEarlyAccessCounter(num);
   document.getElementById('formInner').style.display='none';
   const s=document.getElementById('successDiv');
   s.style.display='flex';
