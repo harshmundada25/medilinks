@@ -1,15 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MediLinks.ai</title>
-  <meta http-equiv="refresh" content="0; url=./early_page_access.html"/>
-  <script>
-    window.location.replace('./early_page_access.html');
-  </script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MediLinks.ai — Early Access</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <p>Redirecting to <a href="./early_page_access.html">MediLinks Early Access</a>...</p>
+<div class="bg-fade"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    <div class="nl-wordmark">Medilinks<span>.ai</span></div>
+  </div>
+  <div class="nav-right">
+    <span class="nav-tag">Launching Soon</span>
+    <button class="nav-cta" onclick="document.getElementById('formCard').scrollIntoView({behavior:'smooth'})">Get Early Access</button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+
+  <div class="access-pill">
+    <span class="ap-badge">Early Access</span>
+    <span class="ap-text">Exclusive — open to doctors first</span>
+  </div>
+
+  <h1 class="headline">
+    India's<br/>
+    <span class="word-blue">Healthcare</span><br/>
+    <span class="word-green">Networking platform</span>
+  </h1>
+
+  <p class="hero-sub">
+    MediLinks uses <b>intelligent AI agents</b> to help doctors find the right people, make the right referrals, and discover the right opportunities.
+  </p>
+
+  <div class="feat-pills">
+    <span class="fp"><span class="fp-dot"></span>Hire the right people</span>
+    <span class="fp"><span class="fp-dot"></span>Refer with confidence</span>
+    <span class="fp"><span class="fp-dot"></span>AI Networking</span>
+    <span class="fp"><span class="fp-dot"></span>Career Opportunities</span>
+    <span class="fp"><span class="fp-dot"></span>Verified Network</span>
+    <span class="fp"><span class="fp-dot"></span>Medical Marketplace</span>
+  </div>
+
+  <div class="scarcity">
+    <div class="sc-info">
+      <div class="sc-label">Early access spots</div>
+      <div class="sc-bar"><div class="sc-bar-fill" id="barFill"></div></div>
+    </div>
+    <div class="sc-count">
+      <div class="sc-big" id="countNum">400</div>
+      <div class="sc-small">of 1,000</div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-outer">
+    <div class="form-card" id="formCard">
+
+      <div id="formInner">
+        <div class="form-intro">
+          <div class="fi-tag">Early Access</div>
+          <div class="fi-note">We'd be honoured to have you shape this platform from day one.</div>
+        </div>
+
+        <div class="fgrid">
+          <div class="field">
+            <label class="fl">Full Name</label>
+            <input type="text" id="f-name" placeholder="Dr. Arjun Mehta"/>
+          </div>
+          <div class="field">
+            <label class="fl">Mobile Number</label>
+            <input type="tel" id="f-phone" placeholder="+91 98765 43210"/>
+          </div>
+          <div class="field full">
+            <label class="fl">Email Address</label>
+            <input type="email" id="f-email" placeholder="doctor@gmail.com"/>
+          </div>
+          <div class="field">
+            <label class="fl">Qualification</label>
+            <select id="f-degree">
+              <option value="" disabled selected>Select degree</option>
+              <option>MBBS</option><option>MD</option><option>MS</option>
+              <option>BDS</option><option>MDS</option><option>DNB</option>
+              <option>DM</option><option>MCh</option><option>BHMS</option>
+              <option>BAMS</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="fl">Specialisation</label>
+            <input type="text" id="f-spec" placeholder="e.g. Cardiology"/>
+          </div>
+          <div class="field full">
+            <label class="fl">Professional Role</label>
+            <select id="f-role">
+              <option value="" disabled selected>Select professional role</option>
+              <option>Resident</option>
+              <option>Consultant</option>
+              <option>Surgeon</option>
+              <option>Clinic Owner</option>
+              <option>Hospital</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label class="fl">What would make Medilinks.ai truly valuable for doctors like you?</label>
+            <textarea id="f-thoughts" placeholder="Any feedback on the website, features, or experience."></textarea>
+          </div>
+          <div class="field full">
+            <label class="fl">Your biggest daily challenge</label>
+            <textarea id="f-challenges" placeholder="Referrals, finding the right colleague, hiring, patient follow-ups, continuing education..."></textarea>
+          </div>
+          <label class="invest-row" id="investRow" for="f-invest">
+            <input type="checkbox" id="f-invest"/>
+            <span class="invest-copy">
+              <strong>🌱 Angel Investor Access</strong>
+              I'm interested in early-stage investment opportunities in MediLinks.ai
+            </span>
+          </label>
+          <button class="submit-btn" id="submitBtn" onclick="handleSubmit()" disabled>Request Early Access →</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success" id="successDiv">
+        <div class="suc-ring">✓</div>
+        <div class="suc-title">Thank you, Doctor.</div>
+        <div class="suc-body">Your request has been received. We'll reach out personally before the public launch — welcome to the founding community.</div>
+        <div class="suc-num">Early Member #<span id="memberNum">401</span></div>
+      </div>
+    </div>
+
+    <div class="form-foot">
+      <svg width="11" height="13" viewBox="0 0 11 13" fill="none"><rect x="0.75" y="5.75" width="9.5" height="6.5" rx="1.75" stroke="#8c9aaa" stroke-width="1.2"/><path d="M3 5.75V4A2.5 2.5 0 018 4v1.75" stroke="#8c9aaa" stroke-width="1.2"/></svg>
+      Private &amp; confidential · No spam, ever · Unsubscribe anytime
+    </div>
+  </div>
+
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker-section">
+  <div class="ticker-label">Spreading across India — state by state</div>
+  <div class="ticker-outer">
+    <div class="ticker-belt" id="belt"></div>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats">
+  <div class="stats-card">
+    <div class="sc"><div class="sc-n">29</div><div class="sc-l">States & UTs</div></div>
+    <div class="sc"><div class="sc-n">1,000</div><div class="sc-l">Founding spots</div></div>
+    <div class="sc"><div class="sc-n">30+</div><div class="sc-l">Specialities</div></div>
+    <div class="sc"><div class="sc-n">∞</div><div class="sc-l">AI connections</div></div>
+  </div>
+</div>
+
+<!-- ── FEATURES ── -->
+<div class="features">
+  <div class="feat-hd">Everything a doctor needs,</div>
+  <div class="feat-hd-sub">in one intelligent platform.</div>
+  <div class="feat-grid">
+    <div class="feat">
+      <div class="f-icon">🤝</div>
+      <div class="f-h">Hire the right people</div>
+      <div class="f-p">Find verified healthcare professionals for your clinic, team, or practice — intelligently matched by AI</div>
+    </div>
+    <div class="feat">
+      <div class="f-icon">🔗</div>
+      <div class="f-h">Refer with confidence</div>
+      <div class="f-p">AI identifies the most suitable specialist for your patient based on expertise, location, and trust signals</div>
+    </div>
+    <div class="feat">
+      <div class="f-icon">🧠</div>
+      <div class="f-h">AI Networking</div>
+      <div class="f-p">Your intelligent agent surfaces peers, mentors, and collaborators you'd never find on your own</div>
+    </div>
+    <div class="feat">
+      <div class="f-icon">💼</div>
+      <div class="f-h">Career Opportunities</div>
+      <div class="f-p">Jobs, fellowships, international postings — proactively delivered to your profile</div>
+    </div>
+    <div class="feat">
+      <div class="f-icon">🛒</div>
+      <div class="f-h">Cart on Call</div>
+      <div class="f-p">Doctor-exclusive medical marketplace with verified suppliers and practice discounts</div>
+    </div>
+    <div class="feat">
+      <div class="f-icon">🔐</div>
+      <div class="f-h">Verified Network</div>
+      <div class="f-p">Every member is credential-verified. Only real, trusted healthcare professionals — zero noise</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LAUNCH BANNER ── -->
+<div class="launch-banner">
+  <div class="lb-card">
+    <div class="lb-left">
+      <div class="lb-tag">🚀 Status</div>
+      <div class="lb-title">Launching soon — stay tuned.</div>
+      <div class="lb-sub">We're putting the final touches on something built with deep respect for Indian healthcare. The wait will be worth it.</div>
+    </div>
+    <div class="lb-right">🏥</div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p><strong>MediLinks.ai</strong> — India's Healthcare Professional Network, Powered by AI</p>
+  <p>© 2026 MediLinks Technologies &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
